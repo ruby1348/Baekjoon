@@ -3,7 +3,7 @@
 #define MAX 131072
 #define MOD 1000000007
 
-std::vector<std::vector<int>> segtree(12, std::vector<int>(MAX * 2, 0));
+std::vector<std::vector<int>> segtree(11, std::vector<int>(MAX * 2, 0));
 
 int sum_tree(int start, int end, int left, int right, int point, int ord);
 void insert(int point, int num, int ord);
@@ -22,13 +22,14 @@ int main() {
 
 		// 원소 개수만큼 만들 수 있는 쌍의 개수 구하고 세그먼트 트리에 넣기
 		int sum = 1;
-		for (int j = 0; j < 11; j++) {
+		for (int j = 0; j < 10; j++) {
 			insert(temp, sum, j);
 			sum = sum_tree(0, temp - 1, 0, MAX - 1, 1, j);
 		}
+        total = (total + sum) % MOD;
 	}
 
-	std::cout << sum_tree(0, MAX - 1, 0, MAX - 1, 1, 10);
+	std::cout << total;
 }
 
 void insert(int index, int num, int ord) {
