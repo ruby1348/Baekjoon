@@ -72,6 +72,10 @@ int main() {
 	long long max = 0;
 	for (int i = 0; i < n; i++) {
 		int current_y = -1000000001;
+
+		// 이전 y 좌표가 같은 경우 최댓값 갱신 X
+		if (i > 0 && vec[i].y == vec[i - 1].y) continue;
+
 		for (int j = i; j < n; j++) {
 			insert(vec[j].x, vec[j].w);
 			// 다음 y 좌표가 같은 경우 최댓값 갱신 X 
